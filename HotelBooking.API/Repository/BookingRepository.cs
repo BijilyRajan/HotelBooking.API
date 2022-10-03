@@ -1,4 +1,6 @@
-﻿namespace HotelBooking.API.Repository
+﻿using HotelBooking.API.Models;
+
+namespace HotelBooking.API.Repository
 {
     public class BookingRepository : IBookingRepository
     {

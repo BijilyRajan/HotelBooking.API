@@ -1,4 +1,6 @@
+using HotelBooking.API;
 using HotelBooking.API.Repository;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; Initial Catalog=HotelBookingDB;";
+
+
+builder.Services.AddDbContext<HotelBookingDB>
+    (o => o.UseSqlServer(connectionString));
+
 
 var app = builder.Build();
 

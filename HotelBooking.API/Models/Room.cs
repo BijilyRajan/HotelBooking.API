@@ -1,4 +1,4 @@
-﻿namespace HotelBooking.API
+﻿namespace HotelBooking.API.Models
 {
     public class Room
     {

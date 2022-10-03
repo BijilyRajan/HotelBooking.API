@@ -1,4 +1,5 @@
-﻿using HotelBooking.API.Repository;
+﻿using HotelBooking.API.Models;
+using HotelBooking.API.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
