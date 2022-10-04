@@ -2,8 +2,8 @@
 
 namespace HotelBooking.API.Repository
 {
-    public interface IBookingRepository
+    public interface IHotelRepository
     {
-        Task<List<Room>> GetRooms();
+        Task<List<Hotel>> GetHotelsByCity(); 
     }
 }

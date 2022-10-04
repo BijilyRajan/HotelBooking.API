@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HotelBooking.API.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelBooking.API.Controllers
@@ -7,18 +8,18 @@ namespace HotelBooking.API.Controllers
     [ApiController]
     public class HotelController : ControllerBase
     {
-        private readonly HotelBookingDB _dbContext;
+        private readonly IHotelRepository _dbRepository;
 
-        public HotelController(HotelBookingDB dbContext)
+        public HotelController(IHotelRepository dbContext)
         {
-            _dbContext = dbContext;
+            _dbRepository = dbContext;
         }
 
         [HttpGet]
         [Route("GetHotelsByCity")]
         public async Task<IActionResult> GetHotelsByCity(string City)
         {
-            var hotels = await _dbContext.Hotels.ToListAsync();
+            var hotels = await _dbRepository.GetHotelsByCity();
 
             var hotelsbycity = hotels.AsEnumerable()
                 .Where(q => City.Contains(q.City))

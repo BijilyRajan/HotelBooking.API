@@ -12,17 +12,23 @@ namespace HotelBooking.API.Controllers
         //private readonly DbContext _dbContext;
         //Time being I am using in memory data beacuse I need to submit the project on Oct-5, 2022
 
-        private readonly IBookingRepository _bookingRepository;
+        private readonly IBookingRepository _dbRepository;
 
         public BookingController(IBookingRepository bookingRepository)
         {
-            _bookingRepository = bookingRepository;
+            _dbRepository = bookingRepository;
         }
 
         [HttpGet("GetRooms")]
-        public List<Room> GetRooms(string fromDate, string toDate)
+        public async Task<IActionResult> GetRooms(int hotelId)
         {
-            return _bookingRepository.GetAvailableRooms();
+            var hotels = await _dbRepository.GetRooms();
+
+            var hotelsbycity = hotels.AsEnumerable()
+                .Where(q => hotelId.Equals(q.HotelId))
+                .ToArray();
+
+            return Ok(hotelsbycity);
         }
 
 

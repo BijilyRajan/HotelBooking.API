@@ -12,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 
 var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; Initial Catalog=HotelBookingDB;";
 
